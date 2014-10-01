@@ -1,8 +1,8 @@
 class CreateSearches < ActiveRecord::Migration
   def change
     create_table :searches do |t|
-      t.string :keyword
-      t.integer :count
+      t.string :keyword, null: false
+      t.integer :count, default: 1
       t.timestamps
     end
 
