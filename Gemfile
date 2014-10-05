@@ -25,3 +25,6 @@ end
 
 # Spotify API wrapper for Rails
 gem 'rspotify'
+
+# Well, this app is open source
+gem 'figaro'
