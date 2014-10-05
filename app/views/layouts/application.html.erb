@@ -11,7 +11,7 @@
 </h1>
 <% # Top search keywords %>
 <% search_trends.each do |trend| %>
-    <li><%= link_to trend.keyword, new_playlist_path(trend.keyword) %> <small><%= trend.count %></small> searches</li>
+    <li><%= link_to trend.keyword, new_playlist_path(trend.keyword) %></li>
 <% end %>
 <%= yield %>
 <%= javascript_include_tag "application" %>

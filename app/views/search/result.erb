@@ -1,10 +1,12 @@
 <h2>
-    listwalk for '<%= @keyword.keyword %>'
-    <small><%= @keyword.count %></small> hits
+    listwalk for '<%= @search_term.keyword %>'
+    <small><%= @playlist.size %></small> songs
 </h2>
 
 <% @playlist.each do |cover| %>
-<img src="<%= cover.album.images.third['url'] %>">
+	<% if cover.album.images.third %>
+		<img src="<%= cover.album.images.third['url'] %>">
+	<% end %>
 <% end %>
 
 <% @playlist.each do |track| %>

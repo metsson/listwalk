@@ -1,3 +1,5 @@
+# Generates array of Spotify tracks based on valid
+# keyword using rspotify gem
 class Search < ActiveRecord::Base
     before_create :set_counter
 
@@ -16,9 +18,6 @@ class Search < ActiveRecord::Base
         if tracks.size < 5
             raise 'The playlist could not be generated'
         end
-
-        # Update counter for search term
-        #self.count.increment
 
         return tracks.reverse
     end

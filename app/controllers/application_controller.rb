@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
 
   helper_method :search_trends
 
+  # Utilized as helper method returning the current
+  # authenticated Spotify user or nil
+  def current_user
+  end
+
+  # The (5) most used search terms
   def search_trends
     Search.all.order('count DESC').take(5)
   end
