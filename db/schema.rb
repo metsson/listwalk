@@ -13,13 +13,16 @@
 
 ActiveRecord::Schema.define(version: 20141001031633) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "searches", force: true do |t|
-    t.string   "keyword"
-    t.integer  "count"
+    t.string   "keyword",                null: false
+    t.integer  "count",      default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "searches", ["keyword"], name: "index_searches_on_keyword"
+  add_index "searches", ["keyword"], name: "index_searches_on_keyword", using: :btree
 
 end

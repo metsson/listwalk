@@ -1,4 +1,0 @@
-
-<% @trends.each do |trend| %>
-    <li><%= link_to trend.keyword, new_playlist_path(trend.keyword) %> <small><%= trend.count %></small> searches</li>
-<% end %>

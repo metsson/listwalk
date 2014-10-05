@@ -9,6 +9,10 @@
 <h1>listwalk
     <small>probably the greatest way for discovering new music on Spotify</small>
 </h1>
+<% # Top search keywords %>
+<% search_trends.each do |trend| %>
+    <li><%= link_to trend.keyword, new_playlist_path(trend.keyword) %> <small><%= trend.count %></small> searches</li>
+<% end %>
 <%= yield %>
 <%= javascript_include_tag "application" %>
 </body>

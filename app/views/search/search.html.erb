@@ -7,8 +7,6 @@
 <img src="<%= cover.album.images.third['url'] %>">
 <% end %>
 
-<%= link_to "Open playlist '#{@keyword.keyword}'", generate_playlist_path(@keyword.keyword) %>
-
 <% @playlist.each do |track| %>
     <li>
         <a href="<%= track.uri %>">Play</a>
@@ -16,6 +14,3 @@
         <small>by <%= track.artists.first.name %></small>
     </li>
 <% end %>
-
-<%= link_to "Open playlist '#{@keyword.keyword}'", generate_playlist_path(@keyword.keyword) %>
-
