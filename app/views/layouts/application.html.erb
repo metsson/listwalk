@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>listwalk</title>
+<%= yield(:meta_tags) %>
 <!-- CDNs -->
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
@@ -52,8 +52,9 @@
 	</header>
 	<div class="search-and-trends">
 		<form action="<%= new_playlist_path %>" method="get">		
-			<input type="search" id="search" name="keyword" class="form-control" placeholder="Discover new music" autofocus=autofocus value="<% if @search_term %><%= @search_term.keyword %><% end %>">
+			<input type="search" id="search" name="keyword" class="form-control" placeholder="Discover new music..." autofocus=autofocus value="<% if @search_term %><%= @search_term.keyword %><% end %>">
 		</form>
+		<% if !search_trends.empty? %>
 		<aside class="trends">			
 			<% # Top search keywords %>
 			<ul class="list-inline">
@@ -63,6 +64,7 @@
 			<% end %>
 			</ul>
 		</aside>
+		<% end %>
 	</div>	
 	<div class="main-content">
 		<%= yield %>

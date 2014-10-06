@@ -1,3 +1,19 @@
+<% content_for :meta_tags do %>
+<title>Playlist for '<%= @search_term.keyword %>' on listwalk</title>
+<meta property="og:site_name" content="listwalk">
+<meta name="description" content="Spotify playlist created for '<%= @search_term.keyword %>' using listwalk, containing the <%= @playlist.size %> most popular tracks, regardless of their genre. Enjoy!">
+<!-- og tags -->
+<meta property="og:title" content="Playlist for '<%= @search_term.keyword %>' on listwalk">
+<meta property="og:description" content="Spotify playlist created for '<%= @search_term.keyword %>' using listwalk, containing the <%= @playlist.size %> most popular tracks, regardless of their genre. Enjoy!">
+<meta property="og:type" content="music.playlist">
+<meta property="og:url" content="<%= request.original_url %>">
+<meta property="og:audio:type" content="audio/vnd.facebook.bridge">
+<% @playlist.take(6).each do |cover| %>
+	<% if cover.album.images.first %>
+<meta property="og:image" content="<%= cover.album.images.first['url'] %>">
+	<% end %>		
+<% end %>
+<% end %>
 <div class="row">
 	<div class="col-sm-8 playlist">
 		<h2>
@@ -6,11 +22,12 @@
 		</h2>	
 		<ul class="list-inline">
 		<% @playlist.each do |track| %>
-		    <li>		        
-		        <%= track.name %>
-		        <small>by <%= track.artists.first.name %></small>
-		    </li>
-		    <br>
+		    <section>
+			    <li>		        
+			        <%= track.name %>
+			        <small>by <%= track.artists.first.name %></small>
+			    </li>
+		    </section>
 		<% end %>
 		</ul>
 	</div>
@@ -18,7 +35,7 @@
 		<% if current_user %>
 			
 			<%= link_to generate_playlist_path(@search_term.keyword) do %>
-			<i class="fa fa-play"></i>  Play
+			<i class="fa fa-play"></i>  Play <span>(Opens in Spotify)</span>
 			<% end %>
 		<% else %>
 			<%= link_to connect_to_spotify_path(redirect: request.original_url) do %>
