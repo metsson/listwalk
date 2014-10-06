@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Listwalk</title>
+<title>listwalk</title>
 <%= stylesheet_link_tag    "application", media: "all" %>
 <%= csrf_meta_tags %>
 </head>
@@ -12,12 +12,18 @@ Currently logged in via Spotify as <strong><%= current_user.display_name %></str
 <% else %>
 Connect <%= link_to 'Sign in with Spotify', connect_to_spotify_path %>
 <% end %>
-<h1>listwalk
-    <small>generate awesome Spotify playlists in a fun way</small>
+<h1>listwalk beta
+    <small>discover new music on Spotify like you never have before!</small>
 </h1>
 <% # Top search keywords %>
 <% search_trends.each do |trend| %>
     <li><%= link_to trend.keyword, new_playlist_path(trend.keyword) %></li>
+<% end %>
+
+<% # GET form %>
+<%= form_for new_playlist_path('test'), method: 'get' do |s| %>
+	<%= s.text_field :keyword %>
+	<%= s.submit %>
 <% end %>
 <%= yield %>
 <%= javascript_include_tag "application" %>
