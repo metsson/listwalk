@@ -22,7 +22,7 @@ class Search < ActiveRecord::Base
         playlist = user.playlists.select { |p| p.name == playlist_title}      
         tracks = self.get_tracks!
 
-        if generated_playlist.empty?
+        if playlist.empty?
             # Let's make a new playlist then!
             playlist = user.create_playlist!(playlist_title)            
             playlist.add_tracks!(tracks)  
