@@ -32,8 +32,7 @@
 		</ul>
 	</div>
 	<div class="col-sm-4 playlist-controls">
-		<% if current_user %>
-			
+		<% if current_user %>			
 			<%= link_to generate_playlist_path(@search_term.keyword) do %>
 			<i class="fa fa-play"></i>  Play <span>(Opens in Spotify)</span>
 			<% end %>
@@ -42,7 +41,7 @@
 			<i class="fa fa-spotify"></i> Connect to listen!
 			<% end %>
 		<% end %>
-
+		<div class="fb-share-button" data-href="<%= request.original_url %>" data-layout="button_count"></div>
 		<div class="playlist-cover">
 		<% @playlist.take(6).each do |cover| %>
 			<% if cover.album.images.third %>
