@@ -2,30 +2,58 @@
 <html>
 <head>
 <title>listwalk</title>
+<!-- CDNs -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- CDNs -->
 <%= stylesheet_link_tag    "application", media: "all" %>
 <%= csrf_meta_tags %>
 </head>
 <body>
-<% if current_user %>
-Currently logged in via Spotify as <strong><%= current_user.display_name %></strong>
-| <%= link_to 'Log out', disconnect_from_spotify_path %>
-<% else %>
-Connect <%= link_to 'Sign in with Spotify', connect_to_spotify_path %>
+<% if flash[:notice] %>
+<div class="notice">
+	<p class="bg-primary">
+	<%= flash[:notice] %></p>
+</div>
 <% end %>
-<h1>listwalk beta
-    <small>discover new music on Spotify like you never have before!</small>
-</h1>
-<% # Top search keywords %>
-<% search_trends.each do |trend| %>
-    <li><%= link_to trend.keyword, new_playlist_path(trend.keyword) %></li>
-<% end %>
-
-<% # GET form %>
-<%= form_for new_playlist_path('test'), method: 'get' do |s| %>
-	<%= s.text_field :keyword %>
-	<%= s.submit %>
-<% end %>
-<%= yield %>
+<!-- navigation links -->
+<nav>	
+	<ul class="list-inline">
+		<% if current_user %>
+		<li>
+			<i class="fa fa-spotify"></i> Logged in via Spotify as <strong><%= current_user.display_name %></strong>
+		</li>
+		<li>				
+			<i class="fa fa-sign-out"></i> <%= link_to 'Disconnect', disconnect_from_spotify_path %>
+		</li>
+		<% else %>
+			<li><i class="fa fa-spotify"></i> <%= link_to 'Connect with Spotify', connect_to_spotify_path %></li>
+		<% end %>		
+	</ul>
+</nav>
+<div class="container">
+	<header class="header">
+		<h1><span class="listwalk-type listwalk-type-green">listwalk</span> <small>New music. The ingenious way.</small></h1>
+	</header>
+	<div class="search-and-trends">
+		<form action="<%= new_playlist_path %>" method="get">		
+			<input type="search" id="search" name="keyword" class="form-control" placeholder="Discover new music" autofocus=autofocus value="<% if @search_term %><%= @search_term.keyword %><% end %>">
+		</form>
+		<aside class="trends">			
+			<% # Top search keywords %>
+			<ul class="list-inline">
+			<li><strong><i class="fa fa-line-chart"></i> Trending </strong></li>
+			<% search_trends.each do |trend| %>
+			    <li><%= link_to trend.keyword, new_playlist_path(keyword: trend.keyword) %></li>
+			<% end %>
+			</ul>
+		</aside>
+	</div>	
+	<div class="main-content">
+		<%= yield %>
+	</div>
+</div>        	
 <%= javascript_include_tag "application" %>
 </body>
 </html>

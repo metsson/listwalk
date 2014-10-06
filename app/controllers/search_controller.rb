@@ -1,14 +1,14 @@
 class SearchController < ApplicationController
   # This is where keywords are sent
   def result
-    @search_term = Search.find_or_create_by!(keyword: params[:keyword])
-    @search_term.count += 1
-    @search_term.save
-    begin
-    	@playlist = @search_term.get_tracks!
-    rescue
-    	# redirect to startpage with notice?
-    end
+	    @search_term = Search.find_or_create_by!(keyword: params[:keyword])
+	    @search_term.count += 1
+	    @search_term.save	    
+	    @playlist = @search_term.get_tracks!
+
+	    rescue
+	    	flash[:notice] = "The list of tracks for '#{params[:keyword]}' was way to short or faulty, thus not created. Try something else :)"
+			redirect_to root_url
   end	
 
   # POST
@@ -20,7 +20,7 @@ class SearchController < ApplicationController
   		# Sometimes, the access token cannot be verified
   		# thus throwing a 401 back. Redirect to index with proper notice
   		rescue
+  			flash[:notice] = "Something went wrong while generating playlist for #{params[:keyword]}..."
   			redirect_to disconnect_from_spotify_url
-  		
   end
 end

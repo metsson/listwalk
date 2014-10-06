@@ -7,12 +7,20 @@ class SpotifyUserController < ApplicationController
 			user = RSpotify::User.new(request.env['omniauth.auth'])
 			session[:spotify_user] = user.to_hash
 		end
-		redirect_to root_url
+			flash[:notice] = "Nice to see ya #{user.display_name}!"
+		if params[:redirect]
+			redirect_to URL.decode params[:redirect]
+		else
+			redirect_to root_url
+		end
 	end
 
 	# No rocket science - just set session variable to nil
 	def disconnect
 		session[:spotify_user] = nil
+		if flash[:notice].nil?
+			flash[:notice] = "Disconnected from Spotify. Hope to see you soon!" 
+		end
 		redirect_to root_url
 	end
 end
