@@ -20,6 +20,7 @@
 		    <span class="listwalk-type">listwalk</span> for '<%= @search_term.keyword %>'
 		    <small><%= @playlist.size %> tracks</small>
 		</h2>	
+		<div class="fb-share-button" data-href="<%= request.original_url %>" data-layout="button_count"></div>
 		<ul class="list-inline">
 		<% @playlist.each do |track| %>
 		    <section>
@@ -48,9 +49,5 @@
 			<% end %>		
 		<% end %>
 		</div>
-		<aside>	
-		<p>Like what you hear?</p>
-		<div class="fb-share-button" data-href="<%= request.original_url %>" data-layout="button_count"></div>
-		</aside>	
 	</div>	
 </div>
