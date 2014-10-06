@@ -28,3 +28,6 @@ gem 'rspotify'
 
 # Well, this app is open source
 gem 'figaro'
+
+# Heroku...
+gem 'rails_12factor'
