@@ -31,6 +31,7 @@
 	<%= flash[:notice] %></p>
 </div>
 <% end %>
+<div id="fb-root"></div>
 <!-- navigation links -->
 <nav>	
 	<ul class="list-inline">
@@ -48,7 +49,9 @@
 </nav>
 <div class="container">
 	<header class="header">
-		<h1><span class="listwalk-type listwalk-type-green">listwalk</span> <small>New music. The ingenious way.</small></h1>
+		<h1><span class="listwalk-type listwalk-type-green">listwalk</span> <small>New music. The ingenious way.
+		<div class="fb-share-button" data-href="<%= request.original_url %>"></div>
+		</small></h1>
 	</header>
 	<div class="search-and-trends">
 		<form action="<%= new_playlist_path %>" method="get">		
