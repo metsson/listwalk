@@ -1,13 +1,18 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :null_session
 
-  helper_method :search_trends
+  helper_method :search_trends, :current_user
 
   # Utilized as helper method returning the current
   # authenticated Spotify user or nil
   def current_user
+    if session[:spotify_user]
+      @current_user ||= RSpotify::User.new(session[:spotify_user])
+    else 
+      @current_user = nil
+    end
   end
 
   # The (5) most used search terms

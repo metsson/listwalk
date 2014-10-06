@@ -4,6 +4,11 @@ Listwalk::Application.routes.draw do
   # Perform track search
   get 'search/:keyword', to: 'search#result', as: 'new_playlist'
 
-  # Authenticate Spotify user via omniauth
+  # Playlist routes
+  get 'playlist/:keyword', to: 'search#generate_playlist', as: 'generate_playlist'
   
+  # Authenticate Spotify user via omniauth
+  get 'auth/spotify', as: 'connect_to_spotify'
+  get 'auth/spotify/callback', to: 'spotify_user#authenticate'
+  get 'auth/spotify/disconnect', to: 'spotify_user#disconnect', as: 'disconnect_from_spotify'
 end

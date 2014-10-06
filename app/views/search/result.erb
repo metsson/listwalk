@@ -2,7 +2,6 @@
     listwalk for '<%= @search_term.keyword %>'
     <small><%= @playlist.size %></small> songs
 </h2>
-
 <% @playlist.each do |cover| %>
 	<% if cover.album.images.third %>
 		<img src="<%= cover.album.images.third['url'] %>">
@@ -15,4 +14,8 @@
         <%= track.name %>
         <small>by <%= track.artists.first.name %></small>
     </li>
+<% end %>
+
+<% if current_user %>
+	<%= link_to 'Save as playlist', generate_playlist_path(@search_term.keyword) %>
 <% end %>
