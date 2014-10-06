@@ -116,6 +116,22 @@ nav {
   color: #fff;
 }
 
+.credits {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  opacity: .6;
+}
+
+.credits:hover {
+  opacity: 1;
+}
+
+.credits p {
+  padding: 10px;
+  text-align: right;
+  font-size: 12px;
+}
 /* Header */
 
 @media (max-width: 768px) {
@@ -123,6 +139,11 @@ nav {
     display: block;
     font-size: 50%;
   }  
+
+  .credits {
+    display: none;
+    visibility: none;
+  }
 }
 
 @media (min-width: 992px) {
