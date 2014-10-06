@@ -14,3 +14,14 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+
+$(document).ready(function () {
+	// Just some simple UI animations/helpers 
+	if ($('.notice')) {
+		$('.notice').fadeIn().delay(2000).fadeOut('slow'); 
+	}
+
+	$('#search').focus(function() {
+		this.select()
+	})
+})

@@ -31,3 +31,4 @@ gem 'figaro'
 
 # Heroku...
 gem 'rails_12factor'
+gem 'sprockets_better_errors'
