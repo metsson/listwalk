@@ -81,6 +81,7 @@ nav {
 
 .playlist ul {
   display: block;
+  margin: 20px auto;
 }
 
 .playlist ul li {
