@@ -40,14 +40,17 @@
 			<%= link_to connect_to_spotify_path(redirect: request.original_url) do %>
 			<i class="fa fa-spotify"></i> Connect to listen!
 			<% end %>
-		<% end %>
-		<div class="fb-share-button" data-href="<%= request.original_url %>" data-layout="button_count"></div>
+		<% end %>		
 		<div class="playlist-cover">
 		<% @playlist.take(6).each do |cover| %>
 			<% if cover.album.images.third %>
 				<img src="<%= cover.album.images.third['url'] %>">
 			<% end %>		
 		<% end %>
-		</div>		
+		</div>
+		<aside>	
+		<p>Like what you hear?</p>
+		<div class="fb-share-button" data-href="<%= request.original_url %>" data-layout="button_count"></div>
+		</aside>	
 	</div>	
 </div>
