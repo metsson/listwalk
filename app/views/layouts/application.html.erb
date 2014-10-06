@@ -52,7 +52,7 @@
 	</header>
 	<div class="search-and-trends">
 		<form action="<%= new_playlist_path %>" method="get">		
-			<input type="search" id="search" name="keyword" class="form-control" placeholder="Discover new music..." autofocus=autofocus value="<% if @search_term %><%= @search_term.keyword %><% end %>">
+			<input type="search" id="search" name="keyword" class="form-control" placeholder="Search for a word you are thinking of..." autofocus=autofocus value="<% if @search_term %><%= @search_term.keyword %><% end %>">
 		</form>
 		<% if !search_trends.empty? %>
 		<aside class="trends">			
