@@ -28,5 +28,3 @@ gem 'rspotify'
 
 # Well, this app is open source
 gem 'figaro'
-
-gem "twitter-bootstrap-rails"
