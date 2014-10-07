@@ -3,4 +3,4 @@
 # To ban all spiders from the entire site uncomment the next two lines:
 # Dont forget to change this!
 User-agent: *
-Disallow: /
+Disallow: /open-playlist
