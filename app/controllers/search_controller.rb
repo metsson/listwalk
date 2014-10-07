@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
   # This is where keywords are sent
   def result
-	    @search_term = Search.find_or_create_by!(keyword: params[:keyword])
+	    @search_term = Search.find_or_create_by!(keyword: params[:keyword].downcase)
 	    @search_term.count += 1
 	    @search_term.save	    
 	    @playlist = @search_term.get_tracks!
