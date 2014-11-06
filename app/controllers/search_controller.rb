@@ -27,6 +27,6 @@ class SearchController < ApplicationController
   		# thus throwing a 401 back. Redirect to index with proper notice
   		rescue
   			flash[:notice] = "Something went wrong while generating playlist for #{params[:keyword]}..."
-  			redirect_to disconnect_from_spotify_url
+  			redirect_to root_url
   end
 end

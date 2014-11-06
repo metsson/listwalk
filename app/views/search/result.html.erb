@@ -38,7 +38,7 @@
 			<i class="fa fa-play"></i>  Play <span>(Opens in Spotify)</span>
 			<% end %>
 		<% else %>
-			<%= link_to connect_to_spotify_path(redirect: request.original_url) do %>
+			<%= link_to connect_to_spotify_path do %>
 			<i class="fa fa-spotify"></i> Connect to listen!
 			<% end %>
 		<% end %>		

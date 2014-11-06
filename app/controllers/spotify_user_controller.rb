@@ -11,7 +11,9 @@ class SpotifyUserController < ApplicationController
 		
 		# Check if redirect
 		if session[:last_search]
-			redirect_to root_url(keyword: session[:last_search])
+			save_keyword = session[:last_search]
+			session[:last_search] = nil
+			redirect_to new_playlist_url(keyword: save_keyword)
 		else
 			redirect_to root_url
 		end
