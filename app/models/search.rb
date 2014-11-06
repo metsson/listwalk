@@ -10,7 +10,7 @@ class Search < ActiveRecord::Base
     def get_tracks!
         tracks = RSpotify::Track.search(self.keyword, limit: 50, offset: 0).sort_by(&:popularity)
 
-        tracks.delete_if { |t| t.popularity < 45 }
+        tracks.delete_if { |t| t.popularity < 50 }
         tracks = tracks.uniq { |t| t.artists.first.name }        
 
         raise 'The playlist could not be generated' if tracks.size < 4
@@ -32,7 +32,9 @@ class Search < ActiveRecord::Base
             id = playlist.map { |p| p.id  }            
             playlist = RSpotify::Playlist.find(user.id, id.first)
             tracks = tracks & playlist.tracks
-            playlist.add_tracks!(tracks) unless tracks.empty?
+            if !tracks.empty?
+               playlist.add_tracks!(tracks) 
+            end            
         end
 
         return playlist.uri

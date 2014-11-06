@@ -25,8 +25,8 @@ class SearchController < ApplicationController
   		redirect_to playlist.get_playlist!(current_user, "listwalk for #{params[:keyword]}")
   		# Sometimes, the access token cannot be verified
   		# thus throwing a 401 back. Redirect to index with proper notice
-  		rescue
-  			flash[:notice] = "Something went wrong while generating playlist for #{params[:keyword]}..."
+  		rescue   	
+        flash[:notice] = "Something went wrong while generating playlist for #{params[:keyword]}..."
   			redirect_to root_url
   end
 end
