@@ -4,3 +4,4 @@
 # Dont forget to change this!
 User-agent: *
 Disallow: /open-playlist
+Disallow: /auth

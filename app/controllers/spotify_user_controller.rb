@@ -9,7 +9,7 @@ class SpotifyUserController < ApplicationController
 		end
 			flash[:notice] = "Nice to see ya #{user.display_name}!"
 		if params[:redirect]
-			redirect_to URL.decode params[:redirect]
+			redirect_to params[:redirect]
 		else
 			redirect_to root_url
 		end
