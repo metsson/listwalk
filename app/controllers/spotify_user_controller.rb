@@ -8,8 +8,12 @@ class SpotifyUserController < ApplicationController
 			session[:spotify_user] = user.to_hash
 		end
 			flash[:notice] = "Nice to see ya #{user.display_name}!"
-		if params[:redirect]
-			redirect_to URL.decode params[:redirect]
+		
+		# Check if redirect
+		if session[:last_search]
+			save_keyword = session[:last_search]
+			session[:last_search] = nil
+			redirect_to new_playlist_url(keyword: save_keyword)
 		else
 			redirect_to root_url
 		end

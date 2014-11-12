@@ -10,7 +10,7 @@ class Search < ActiveRecord::Base
     def get_tracks!
         tracks = RSpotify::Track.search(self.keyword, limit: 50, offset: 0).sort_by(&:popularity)
 
-        tracks.delete_if { |t| t.popularity < 45 }
+        tracks.delete_if { |t| t.popularity < 50 }
         tracks = tracks.uniq { |t| t.artists.first.name }        
 
         raise 'The playlist could not be generated' if tracks.size < 4
@@ -19,22 +19,20 @@ class Search < ActiveRecord::Base
 
     # Create or re-create a Spotify playlist based upon tracks from a conducted search
     def get_playlist!(user, playlist_title)
-        playlist = user.playlists.select { |p| p.name == playlist_title}      
         tracks = self.get_tracks!
+        playlist = user.playlists.select { |p| p.name == playlist_title}
 
-        if playlist.empty?
-            # Let's make a new playlist then!
-            playlist = user.create_playlist!(playlist_title)            
-            playlist.add_tracks!(tracks)  
-        else
-            # Pre-existing playlist
-            # @todo This is pretty damn ugly!
-            id = playlist.map { |p| p.id  }            
-            playlist = RSpotify::Playlist.find(user.id, id.first)
-            tracks = tracks & playlist.tracks
-            playlist.add_tracks!(tracks) unless tracks.empty?
+
+        if playlist.empty? 
+            # Create new playlist
+            playlist = user.create_playlist!(playlist_title)                    
+            playlist.add_tracks!(tracks)              
+        else    
+            # Fetch pre-existing and replace tracks
+            playlist = RSpotify::Playlist.find(user.id, playlist.first.id)
+            playlist.replace_tracks!(tracks)
         end
-
+        
         return playlist.uri
     end
 
