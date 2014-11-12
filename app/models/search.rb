@@ -31,10 +31,17 @@ class Search < ActiveRecord::Base
             # @todo This is pretty damn ugly!
             id = playlist.map { |p| p.id  }            
             playlist = RSpotify::Playlist.find(user.id, id.first)
-            tracks = tracks & playlist.tracks
-            if !tracks.empty?
-               playlist.add_tracks!(tracks) 
-            end            
+                
+            if !playlist.tracks.empty? 
+                
+                tracks = tracks & playlist.tracks
+                
+                if !tracks.empty?
+                   playlist.add_tracks!(tracks) 
+                end                           
+                
+                playlist.add_tracks!(tracks)  
+            end
         end
 
         return playlist.uri
