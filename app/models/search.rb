@@ -34,13 +34,15 @@ class Search < ActiveRecord::Base
                 
             if !playlist.tracks.empty? 
                 
-                tracks = tracks & playlist.tracks
+                new_tracks = tracks & playlist.tracks
                 
+                # Add new tracks to pre-existing playlist
                 if !tracks.empty?
-                   playlist.add_tracks!(tracks) 
-                end                           
-                
-                playlist.add_tracks!(tracks)  
+                   playlist.add_tracks!(new_tracks) 
+                end                                           
+            else
+                # Empty playlist, add all new tracks
+                playlist.add_tracks!(tracks)
             end
         end
 
