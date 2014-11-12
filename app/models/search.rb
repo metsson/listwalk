@@ -24,9 +24,11 @@ class Search < ActiveRecord::Base
 
 
         if playlist.empty? 
+            # Create new playlist
             playlist = user.create_playlist!(playlist_title)                    
             playlist.add_tracks!(tracks)              
         else    
+            # Fetch pre-existing and replace tracks
             playlist = RSpotify::Playlist.find(user.id, playlist.first.id)
             playlist.replace_tracks!(tracks)
         end

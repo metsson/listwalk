@@ -8,6 +8,7 @@
 <meta property="og:type" content="music.playlist">
 <meta property="og:url" content="<%= request.original_url %>">
 <meta property="og:audio:type" content="audio/vnd.facebook.bridge">
+<meta name="author" content="<%= current_user.display_name %>">
 <% @playlist.take(6).each do |cover| %>
 	<% if cover.album.images.first %>
 <meta property="og:image" content="<%= cover.album.images.first['url'] %>">
