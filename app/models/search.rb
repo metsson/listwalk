@@ -27,25 +27,27 @@ class Search < ActiveRecord::Base
             playlist = user.create_playlist!(playlist_title)            
             playlist.add_tracks!(tracks)  
         else
+            playlist.tracks = nil
+            playlist.add_tracks!(tracks)  
             # Pre-existing playlist
-            id = playlist.map { |p| p.id  }   
-
-            if id         
-                playlist = RSpotify::Playlist.find(user.id, id.first)
-                    
-                if !playlist.tracks.empty? 
-                    
-                    new_tracks = tracks & playlist.tracks
+#            id = playlist.map { |p| p.id  }   
+#
+#           if id         
+#                playlist = RSpotify::Playlist.find(user.id, id.first)
+#                    
+#                if !playlist.tracks.empty? 
+#                    
+#                    new_tracks = tracks & playlist.tracks
                     
                     # Add new tracks to pre-existing playlist
-                    if !new_tracks.empty?
-                       playlist.add_tracks!(new_tracks) 
-                    end                                           
-                else
-                    # Empty playlist, add all new tracks
-                    playlist.add_tracks!(tracks)
-                end
-            end
+#                    if !new_tracks.empty?
+#                      playlist.add_tracks!(new_tracks) 
+#                  end                                           
+#                else
+#                    # Empty playlist, add all new tracks
+#                    playlist.add_tracks!(tracks)
+#                end
+#            end
         end
 
         return playlist.uri
