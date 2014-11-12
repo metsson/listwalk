@@ -19,9 +19,17 @@ class Search < ActiveRecord::Base
 
     # Create or re-create a Spotify playlist based upon tracks from a conducted search
     def get_playlist!(user, playlist_title)
-        playlist = user.create_playlist!(playlist_title)            
         tracks = self.get_tracks!
-        playlist.add_tracks!(tracks)              
+        playlist = user.playlists.select { |p| p.name == playlist_title}
+
+
+        if playlist.nil? 
+            playlist = user.create_playlist!(playlist_title)                    
+            playlist.add_tracks!(tracks)              
+        else    
+            playlist.replace_tracks!(tracks)
+        end
+        
         return playlist.uri
     end
 
