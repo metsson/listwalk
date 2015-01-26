@@ -147,6 +147,8 @@ nav {
   }
 }
 
-@media (min-width: 992px) {
-  
+@media screen and (min-width: 487px) {
+  .trends {
+    text-align: center;
+  }
 }
