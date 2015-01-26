@@ -26,6 +26,9 @@ class SearchController < ApplicationController
   		# Sometimes, the access token cannot be verified
   		# thus throwing a 401 back. Redirect to index with proper notice
   		rescue   	
+        if playlist 
+          playlist.delete
+        end
         flash[:notice] = "Something went wrong while generating playlist for #{params[:keyword]}..."
   			redirect_to root_url
   end
