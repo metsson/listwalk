@@ -51,7 +51,7 @@
 		<h1><span class="listwalk-type listwalk-type-green">listwalk</span> <small>New music. The ingenious way.</small></h1>
 	</header>
 	<div class="search-and-trends">
-		<form action="<%= new_playlist_path %>" method="get">		
+		<form action="<%= new_playapp_path %>" method="get">		
 			<input type="search" id="search" name="keyword" class="form-control" placeholder="Search for a word you are thinking of..." autofocus=autofocus value="<% if @search_term %><%= @search_term.keyword %><% end %>">
 		</form>
 		<% if !search_trends.empty? %>
@@ -60,7 +60,7 @@
 			<ul class="list-inline">
 			<li><strong><i class="fa fa-line-chart"></i> Trending </strong></li>
 			<% search_trends.each do |trend| %>
-			    <li><%= link_to trend.keyword, new_playlist_path(keyword: trend.keyword) %></li>
+			    <li><%= link_to trend.keyword, new_playapp_path(keyword: trend.keyword) %></li>
 			<% end %>
 			</ul>
 		</aside>

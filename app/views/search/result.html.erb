@@ -34,7 +34,7 @@
 	<div class="col-sm-4 playlist-controls">
 		<% if current_user %>
 			
-			<%= link_to generate_playlist_path(@search_term.keyword) do %>
+			<%= link_to generate_playapp_path(@search_term.keyword) do %>
 			<i class="fa fa-play"></i>  Play <span>(Opens in Spotify)</span>
 			<% end %>
 		<% else %>
