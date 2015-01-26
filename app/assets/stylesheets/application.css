@@ -52,7 +52,7 @@ nav {
 }
 
 .search-and-trends ul {
-  margin: 5px auto;
+  margin: 10px auto;
 }
 
 .trends {
@@ -141,7 +141,7 @@ nav {
 /* Header */
 
 @media (max-width: 768px) {
-  .header h1 > small {
+  .header h1 > a > small {
     display: block;
     font-size: 50%;
   }  
