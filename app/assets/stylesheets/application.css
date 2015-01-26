@@ -57,6 +57,7 @@ nav {
 
 .trends {
   margin-top: 10px;
+  text-align: center;
 }
 
 .listwalk-type {
@@ -141,14 +142,12 @@ nav {
     font-size: 50%;
   }  
 
+  .trends {
+    font-size: 50%;
+  }
+  
   .credits {
     display: none;
     visibility: none;
-  }
-}
-
-@media screen and (min-width: 487px) {
-  .trends {
-    text-align: center;
   }
 }

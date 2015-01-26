@@ -54,8 +54,12 @@
 </nav>
 <div class="container">
 	<header class="header">
-		<h1><span class="listwalk-type listwalk-type-green">listwalk</span> <small>New music. The ingenious way.		
-		</small></h1>
+		<h1>
+		<%= link_to root_path do %>
+		<span class="listwalk-type listwalk-type-green">listwalk</span> <small>New music. The ingenious way.		
+		</small>	
+		<% end %>	
+		</h1>
 	</header>
 	<div class="search-and-trends">
 		<form action="<%= new_playlist_path %>" method="get">		
