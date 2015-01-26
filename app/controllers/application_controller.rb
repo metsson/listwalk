@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
 
   # The (5) most used search terms
   def search_trends
-    Search.all.order('count DESC').take(5)
+    Search.where('count > ? AND updated_at > ?', 10, Time.now - 10.days)
+    #Search.all.order('count DESC').take(5)
   end
 end
