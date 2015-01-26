@@ -118,6 +118,10 @@ nav {
   color: #fff;
 }
 
+.main-content {
+  margin: 50px auto;
+}
+
 .credits {
   position: fixed;
   bottom: 0;
@@ -142,10 +146,6 @@ nav {
     font-size: 50%;
   }  
 
-  .trends {
-    font-size: 50%;
-  }
-  
   .credits {
     display: none;
     visibility: none;
