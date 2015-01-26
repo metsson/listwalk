@@ -67,7 +67,7 @@
 			<ul class="list-inline">
 			<li><strong><i class="fa fa-line-chart"></i> Trending </strong></li>
 			<% search_trends.each do |trend| %>
-			    <li><%= link_to trend.keyword, new_playlist_path(keyword: trend.keyword) %></li>
+			    <li><%= link_to trend.keyword, new_playlist_path(keyword: trend.keyword) %> <small>(<%= trend.count %></small> hits)</li>
 			<% end %>
 			</ul>
 		</aside>
