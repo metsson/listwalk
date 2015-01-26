@@ -13,6 +13,7 @@ class SearchController < ApplicationController
 
 	    rescue
 	    	flash[:notice] = "The list of tracks for '#{params[:keyword]}' was way to short or faulty, thus not created. Try something else :)"
+        @search_term.delete
 
       redirect_to root_url
   end	
